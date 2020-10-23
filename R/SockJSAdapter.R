@@ -187,19 +187,21 @@ local({
 </script>", Sys.getenv('SHINY_GAID')))
    }
 
-  #  inject <- paste(
-  #     tags$script(src='__assets__/sockjs-0.3.4.min.js'),
-  #     tags$script(src='__assets__/shiny-server-client.min.js'),
-  #     tags$script(
-  #       sprintf("preShinyInit({reconnect:%s,disableProtocols:[%s]});",
-  #         reconnect, disableProtocols
-  #       )
-  #     ),
-  #     tags$link(rel='stylesheet', type='text/css', href='__assets__/shiny-server.css'),
-  #     gaTrackingCode,
-  #     HTML("</head>"),
-  #     sep="\n"
-  #  )
+   inject <- paste(
+      tags$script(src='__assets__/sockjs-0.3.4.min.js'),
+      tags$script(src='__assets__/sockjs.min.js'),
+      tags$script(src='__assets__/sockjs-0.3.4.0.min.js'),
+      tags$script(src='__assets__/shiny-server-client.min.js'),
+      tags$script(
+        sprintf("preShinyInit({reconnect:%s,disableProtocols:[%s]});",
+          reconnect, disableProtocols
+        )
+      ),
+      tags$link(rel='stylesheet', type='text/css', href='__assets__/shiny-server.css'),
+      gaTrackingCode,
+      HTML("</head>"),
+      sep="\n"
+   )
 
    filter <- function(...) {
       # The signature of filter functions changed between Shiny 0.4.0 and
